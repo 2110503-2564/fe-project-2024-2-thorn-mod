@@ -1,32 +1,38 @@
-export default async function makeReserrvation (){
-    if (restaurant && dayReserve) {
-        const reservationData = {
-            restaurant,
-            reservationTime: dayjs(dayReserve).format("YYYY/MM/DD"),
-        };
+import dayjs from "dayjs";
+export default async function makeReservation(
+  restaurant: string,
+  dayReserve: string,
+  token: string
+) {
+  if (!restaurant || !dayReserve) {
+    alert("Please select a date and restaurant.");
+    return;
+  }
 
-        try {
-            const res = await fetch("http://localhost:5000/api/v1/reservation", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${profile?.token}`, // Pass the token
-                },
-                body: JSON.stringify(reservationData),
-            });
+  const reservationData = {
+    restaurant,
+    reservationTime: dayjs(dayReserve).format("YYYY/MM/DD"),
+  };
 
-            const data = await res.json();
+  try {
+    const res = await fetch("http://localhost:5000/api/v1/reservation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(reservationData),
+    });
 
-            if (res.ok) {
-                alert("Reservation successful!");
-            } else {
-                alert("Error: " + data.error);
-            }
-        } catch (error) {
-            console.error("Error booking:", error);
-            alert("Something went wrong. Please try again.");
-        }
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Reservation successful!");
     } else {
-        alert("Please select a date and restaurant.");
+      alert("Error: " + (data.msg || data.error || "Unknown error"));
     }
-};
+  } catch (error) {
+    console.error("Error booking:", error);
+    alert("Something went wrong. Please try again.");
+  }
+}

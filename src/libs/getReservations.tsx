@@ -1,10 +1,64 @@
-export default async function getReservations() {
-    const response = await fetch(`http://localhost:5000/api/v1/reservation`)
+"use client";
+import { getSession } from "next-auth/react";
+import { ReservationItem } from "../../interface";
 
-    if (!response){
-        throw new Error ("fail to fetch Resevations");
+export default async function getReservations(): Promise<{
+  success: boolean;
+  count: number;
+  data: ReservationItem[];
+}> {
+  try {
+    // Wait for the session to be available
+    const session = await getSession();
+
+    // Log the entire session to see its structure
+    console.log("Full session object:", session);
+
+    // Check if the session exists
+    if (!session) {
+      console.error("No session found");
+      throw new Error("User is not authenticated");
     }
 
-    return response.json();
+    // Access the token - adjust this based on your actual session structure
+    // For a standard next-auth setup, it might be session.accessToken
+    const token = session.user?.token;
 
+    if (!token) {
+      console.error("No token found in session");
+      throw new Error("Authentication token not found");
+    }
+
+    console.log("Using token:", token); // Log the token being used (be careful with this in production)
+
+    const response = await fetch("http://localhost:5000/api/v1/reservation", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // Check response status
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`API error (${response.status}):`, errorText);
+      throw new Error(`Error ${response.status}: ${errorText}`);
+    }
+
+    const data = await response.json();
+
+    // console.log("Reservation data received:", data);
+    // return {
+    //   ...data,
+    //   data: data.data.map((item) => {
+    //     console.log("item :>> ", item);
+    //     return new RestaurantClass(item);
+    //   }),
+    // };
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch reservations:", error);
+    throw error; // Rethrow to let the calling component handle it
+  }
 }

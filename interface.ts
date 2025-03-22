@@ -14,7 +14,7 @@ export interface RestaurantItem {
   openTime: string;
   closeTime: string;
   reservation: ReservationItem[]; // Updated to include reservations
-  picture : string;
+  picture: string;
 }
 
 export interface RestaurantJson {
