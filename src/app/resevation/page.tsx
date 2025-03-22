@@ -1,29 +1,38 @@
 'use client'
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 import { useState } from "react";
 import { MenuItem, Select, TextField } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
-import { ReservationItem } from "../../../interface";
+import { ReservationItem, RestaurantItem } from "../../../interface";
 import { addReservation,removeReservation } from "@/redux/features/reservationSlice";
 import { useSession } from "next-auth/react";
+import getRestaurant from "@/libs/getRestaurant";
 
 export default function Resevation() {
+    
+    const pullRestaurant  = async (id:string) =>{
+        setRestaurant(await getRestaurant(id));
+
+    }
+
+    const makeReserve = async ()=>{
+        
+    }
+
     const profile = useSession().data?.user;
     const [nameLastname, setNameLastname] = useState("");
     const [tel, setTel] = useState("");
     const [dayReserve,setDayReserve] =  useState<Dayjs | null>(null)
-    const [restaurant,setRestaurant] = useState(null)
+    const [restaurant,setRestaurant] = useState<RestaurantItem | null>(null)
 
-    
+
     return (
         <main className="min-h-screen flex flex-col items-center bg-gray-100 py-10">
            
             {/* Booking */}
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl mt-10">
-                <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">Reserve Your Venue</h1>
+                <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">Reserve Your Restaurant</h1>
                 
                 <div className="bg-gray-200 p-6 rounded-lg">
 
@@ -49,12 +58,14 @@ export default function Resevation() {
                         </div>
                         
                         <div>
-                        <Select className="h-[2em] w-[200px]" variant="standard" name="venue" id="venue" value={venue} 
-                                onChange={(e)=>setVenue(e.target.value)}
+                        <Select className="h-[2em] w-[200px]" variant="standard" name="venue" id="venue" value={restaurant?.name} 
+                                onChange={(e)=>pullRestaurant(e.target.value)}
                             >
-                                <MenuItem value="Bloom" >The Bloom Pavilion</MenuItem>
-                                <MenuItem value="Spark">Spark Space</MenuItem>
-                                <MenuItem value="GrandTable">The Grand Table</MenuItem>
+                                <MenuItem value="67bdc78f52c428af8d90acc2" >The Funky Burger</MenuItem>
+                                <MenuItem value="67bdc7c052c428af8d90acc5">Chill & Cheese Pizza Bar</MenuItem>
+                                <MenuItem value="67bdc81052c428af8d90acc8">Hipster Hotpot</MenuItem>
+                                <MenuItem value="67bdc84952c428af8d90accb">Jazz Noodle House</MenuItem>
+                                <MenuItem value="67bdca9052c428af8d90acd0">Pizza Chill Out</MenuItem>
 
                             </Select>
                         </div>

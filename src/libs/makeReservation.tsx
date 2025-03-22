@@ -1,12 +1,14 @@
-export default async function makeReserrvation (){
-    if (restaurant && dayReserve) {
-        const reservationData = {
-            restaurant,
-            reservationTime: dayjs(dayReserve).format("YYYY/MM/DD"),
-        };
+import dayjs from "dayjs";
+import { RestaurantItem } from "../../interface";
+import { useSession } from "next-auth/react";
+
+export default async function makeReserrvation (restaurantId:string){
+
+
+        const profile = useSession().data?.user
 
         try {
-            const res = await fetch("http://localhost:5000/api/v1/reservation", {
+            const res = await fetch(`http://localhost:5000/api/v1/restaurants/${restaurantId}/reservation`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
