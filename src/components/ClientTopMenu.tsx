@@ -48,10 +48,16 @@ export default function ClientTopMenu({ session }: { session: any }) {
           {session ? 
             <Link href={'/api/auth/signout'} onClick={() => setMenuOpen(false)}>
               <div className="p-4 border-b hover:bg-gray-100">Sign-Out {session.user?.name}</div>
-            </Link> : 
-            <Link href={'/api/auth/signin'} onClick={() => setMenuOpen(false)}>
-              <div className="p-4 border-b hover:bg-gray-100">Sign-In</div>
-            </Link>
+            </Link> : (
+            <>
+              <Link href={'/api/auth/signin'} onClick={() => setMenuOpen(false)}>
+                <div className="p-4 border-b hover:bg-gray-100">Sign-In</div>
+              </Link>
+              <Link href={'/register'} onClick={() => setMenuOpen(false)}>
+                <div className="p-4 border-b hover:bg-gray-100">Register</div>
+              </Link>
+            </>
+            )
           }
         </div>
       )}
