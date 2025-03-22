@@ -24,7 +24,7 @@ export default function Banner() {
 
     const handleNavigate = (event: React.MouseEvent) => {
         event.stopPropagation(); 
-        router.push('/venue'); 
+        router.push('/reservation'); 
     };
 
     return (
@@ -53,10 +53,10 @@ export default function Banner() {
 
           
             <button 
-                className="absolute bottom-5 right-5 bg-blue-500 text-white px-5 py-5  rounded-lg text-lg font-semibold hover:bg-blue-600 transition"
+                className="absolute bottom-5 right-5 bg-green-600 text-white px-5 py-5  rounded-lg text-lg font-semibold hover:bg-slate-300 hover:text-blue-600 transition"
                 onClick={handleNavigate}
             >
-                Select Venue
+                Select Restaurant
             </button>
         </div>
     );

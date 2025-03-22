@@ -23,19 +23,15 @@ export default function MyBooking() {
         setLoading(false);
       }
     };
-
     fetchReservations();
   }, []);
 
   if (loading) {
     return <div>Loading...</div>;
   }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
-
-  console.log("re :>> ", reservations);
 
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col items-center py-20">

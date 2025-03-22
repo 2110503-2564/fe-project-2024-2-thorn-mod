@@ -1,7 +1,14 @@
+export interface ReservationJson {
+  success: boolean;
+  count: number;
+  data: ReservationItem[];
+}
+
 export interface ReservationItem {
   _id: string;
   user: string;
   restaurant: RestaurantItem;
+  reservationDate:string;
   reservationTime: string;
   createdAt: string;
 }
@@ -21,4 +28,8 @@ export interface RestaurantJson {
   success: boolean;
   count: number;
   data: RestaurantItem[];
+}
+
+export interface ReservationListProps {
+  reservationJson: ReservationJson | null;
 }

@@ -6,26 +6,12 @@ import { ReservationItem } from "../../interface"; // Assuming you have this typ
 
 type ReservationListProps = {
   reservations: ReservationItem[];
-  // reservations: RestaurantClass[];
 };
 
 export default function ReservationList({
   reservations,
 }: ReservationListProps) {
   const dispatch = useDispatch();
-
-  // return (
-  //   <div className="border-2 border-red-500">
-  //     {reservations.map((res) => {
-  //       return (
-  //         <div className="flex flex-col gap-y-3 p-4" key={res.id}>
-  //           <p>{res.name}</p>
-  //           <p>{res.resevationTime}</p>
-  //         </div>
-  //       );
-  //     })}
-  //   </div>
-  // );
 
   return (
     <>
@@ -56,6 +42,7 @@ export default function ReservationList({
                       reservationTime: reservationItem.reservationTime,
                       createdAt: reservationItem.createdAt,
                       restaurant: reservationItem.restaurant,
+                      reservationDate: "",
                     })
                   )
                 }
