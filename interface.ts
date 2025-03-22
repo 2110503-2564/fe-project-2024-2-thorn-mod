@@ -1,7 +1,7 @@
 export interface ReservationItem {
   _id: string;
   user: string;
-  restaurant: string;
+  restaurant: RestaurantItem;
   reservationTime: string;
   createdAt: string;
 }
@@ -14,6 +14,7 @@ export interface RestaurantItem {
   openTime: string;
   closeTime: string;
   reservation: ReservationItem[]; // Updated to include reservations
+  picture : string;
 }
 
 export interface RestaurantJson {
