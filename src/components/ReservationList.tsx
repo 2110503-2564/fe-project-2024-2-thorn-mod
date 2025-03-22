@@ -42,6 +42,7 @@ export default function ReservationList({
                       reservationTime: reservationItem.reservationTime,
                       createdAt: reservationItem.createdAt,
                       restaurant: reservationItem.restaurant,
+                      // TODO: fix this params
                       reservationDate: "",
                     })
                   )
