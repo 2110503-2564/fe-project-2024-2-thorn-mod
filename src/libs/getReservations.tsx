@@ -1,3 +1,4 @@
+
 export default async function getReservations(token:string) {
     const response = await fetch("http://localhost:5000/api/v1/reservation", {
         method: "GET",
@@ -16,3 +17,4 @@ export default async function getReservations(token:string) {
 
     return data
 }
+

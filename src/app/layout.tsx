@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import ReduxProviders from "@/redux/ReduxProvider";
-import TopMenu from "@/components/TopMenu";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/authOptions";
+
+import ReduxProviders from "@/redux/ReduxProvider";
+import TopMenu from "@/components/TopMenu";
+
+import "./globals.css";
+
 import NextAuthProviders from "@/providers/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });

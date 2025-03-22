@@ -29,28 +29,27 @@ export default function Banner() {
 
     return (
         <div 
-            className="flex relative w-[100vw] h-[30vw] m-0 p-10 shadow-lg text-center " 
+            className="relative flex w-full h-screen m-0 p-10 shadow-lg text-center " 
             onClick={changeBanner}
         >
-            <Image 
-                src={banner[index]} 
-                alt="banner"
-                fill
-                style={{ objectFit: "cover" }}
-            />
+            
+            <div> 
+                <Image 
+                    src={banner[index]} 
+                    alt="banner"
+                    layout="fill"
+                    style={{ objectFit: "cover" }}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+            </div>
 
-            {
-            session?
-            <div className=" flex absolute right-0 p-5 bg-white rounded-md ">
+            {/* {session?
+            <div className=" flex absolute right-0 px-5 bg-white rounded-md ">
                 Welcome {session?.user.name}
             </div>: null
-            }
+            } */}
 
-            <div className="relative top-[200px] w-[700px] 
-            h-[70px] mx-auto bg-[#f5ebd6] text-black text-[30px] font-bold font-sans text-center rounded-[5px] 
-            shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_6px_20px_0_rgba(0,0,0,1)] pt-[10px]">
-                <h1>Where every event finds its venue</h1>
-            </div>
+            <h1 className="relative flex items-center justify-center text-white text-[30px] font-bold">Restaurant Reservation</h1>
 
           
             <button 
