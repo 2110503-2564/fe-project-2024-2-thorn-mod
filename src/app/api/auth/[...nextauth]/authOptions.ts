@@ -19,6 +19,7 @@ export const authOptions:AuthOptions = {
             },
             async authorize(credentials, req) {
               // Add logic here to look up the user from the credentials supplied
+              
               if (!credentials) {
                 return null;
               }

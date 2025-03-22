@@ -3,17 +3,25 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { ReservationItem, ReservationJson } from "../../../interface";
 import getReservations from "@/libs/getReservations";
+import deleteReservation from "@/libs/deleteReservation";
 
 export default function Reservations() {
     const { data: session, status } = useSession();
     const [reservations, setReservations] = useState<ReservationItem[]>([]);
     const [error, setError] = useState(null);
+    const [cancelRes,setCancelRes] = useState<string|null>(null);
+    const [isCancel,setCancel] = useState(false);
 
     useEffect(() => {
         if (status === "authenticated") {
+            if(isCancel){
+                cancelReservation();
+                setCancel(false);
+            }
             fetchReservations();
+
         }
-    }, [status]);
+    }, [status,cancelReservation]);
 
     async function fetchReservations() {
         if (!session?.user?.token) {
@@ -24,6 +32,25 @@ export default function Reservations() {
         try {
             const fetchdata : ReservationJson= await getReservations(session.user.token);
             setReservations(fetchdata.data);
+        } catch (error) {
+            console.error("Failed to fetch reservations:", error);
+        }
+    }
+
+    async function cancelReservation(){
+        if (!session?.user?.token) {
+            Error("User is not authenticated");
+            return Error;
+        }
+
+        if (!cancelRes) {
+            Error("No Reservation Id");
+            return Error;
+        }
+
+        try {
+            const cancel = await deleteReservation({rid:cancelRes,token: session.user.token});
+            fetchReservations();
         } catch (error) {
             console.error("Failed to fetch reservations:", error);
         }
@@ -48,7 +75,7 @@ export default function Reservations() {
                             
                             <button 
                                 className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-md shadow-md transition"
-                                onClick={() => { }}
+                                onClick={(e) => {setCancelRes(reservation._id); setCancel(true); }}
                             >
                                 Cancel Reservation
                             </button>
