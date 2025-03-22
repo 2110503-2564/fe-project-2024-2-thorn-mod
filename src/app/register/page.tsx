@@ -13,6 +13,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
+    console.log("Form submitted", user)
     try {
         const response = await userRegister(user.name, user.email, user.tel, user.password);
         if (response.success) {
