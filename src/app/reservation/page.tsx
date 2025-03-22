@@ -74,9 +74,9 @@ export default function Resevation() {
                 </div>
 
                 {/* Booking Button */}
-                <button name="Book Venue" onClick={makeBooking}
+                <button name="Book Venue" 
                     className="mt-6 w-full bg-green-500 hover:bg-green-600 transition text-white font-semibold py-3 rounded-lg shadow-md text-lg">
-                    Book Venue
+                    Reserve
                 </button>
             </div>
 
