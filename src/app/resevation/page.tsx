@@ -7,32 +7,17 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { ReservationItem } from "../../../interface";
-import { addBooking } from "@/redux/features/bookSlice";
+import { addReservation,removeReservation } from "@/redux/features/reservationSlice";
+import { useSession } from "next-auth/react";
 
-export default function Booking() {
+export default function Resevation() {
+    const profile = useSession().data?.user;
     const [nameLastname, setNameLastname] = useState("");
     const [tel, setTel] = useState("");
     const [dayReserve,setDayReserve] =  useState<Dayjs | null>(null)
-    const [venue,setVenue] = useState('Tokyo')
+    const [restaurant,setRestaurant] = useState(null)
 
-    const dispatch = useDispatch<AppDispatch>();
-    const makeBooking = ()=>{
-        if (venue && dayReserve ){
-            const booking : BookingItem = {
-                nameLastname : nameLastname,
-                tel : tel,
-                venue : venue,
-                bookDate : dayjs(dayReserve).format("YYYY/MM/DD")
     
-            }
-            dispatch(addBooking(booking));
-        }
-        
-       
-
-        
-    };
-
     return (
         <main className="min-h-screen flex flex-col items-center bg-gray-100 py-10">
            

@@ -1,9 +1,9 @@
-import  getVenue from "@/libs/getRestaurant";
+import getRestaurant from "@/libs/getRestaurant";
 import Image from "next/image";
 
 
-export default async function VenueDetail({ params }: { params: { vid: string } }) {
-  const venueData = await getVenue(params.vid);
+export default async function VenueDetail({ params }: { params: { rid: string } }) {
+  const venueData = await getRestaurant(params.rid);
 
   return (
     <main className="p-10 bg-gray-50 min-h-screen flex justify-center items-center">
@@ -26,10 +26,8 @@ export default async function VenueDetail({ params }: { params: { vid: string } 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg text-gray-700">
               <p><span className="font-semibold text-gray-900">Name:</span> {venueData.data.name}</p>
               <p><span className="font-semibold text-gray-900">Address:</span> {venueData.data.address}</p>
-              <p><span className="font-semibold text-gray-900">District:</span> {venueData.data.district}</p>
-              <p><span className="font-semibold text-gray-900">Postal Code:</span> {venueData.data.postalcode}</p>
               <p><span className="font-semibold text-gray-900">Tel:</span> {venueData.data.tel}</p>
-              <p><span className="font-semibold text-gray-900">Daily Rate:</span> {venueData.data.dailyrate} THB</p>
+              <p><span className="font-semibold text-gray-900">Open - Close:</span> {venueData.data.openTime} - {venueData.data.closeTime} </p>
             </div>
           </div>
         </div>

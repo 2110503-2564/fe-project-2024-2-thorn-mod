@@ -33,9 +33,9 @@ export default async function TopMenu(){
                     </div>
                  </Link>
                 }
-                 <Link href={'/myBooking'}>
+                 <Link href={'/myReservation'}>
                     <div className="flex items-center h-full px-5 text-md"> 
-                    My Booking
+                    My Reservation
                     </div>
                 </Link>
                 </div>
