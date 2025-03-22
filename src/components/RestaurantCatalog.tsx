@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Card from "./Card";
-import { VenueItem, VenueJson } from "../../interface";
+import { RestaurantItem, RestaurantJson } from "../../interface";
 
-export default async function VenueCatalog({venuesJson}:{venuesJson:Promise<VenueJson>}){
-    const venuesJsonReady = await venuesJson;
+export default async function RestaurantCatalog({restaurantJson}:{restaurantJson:Promise<RestaurantJson>}){
+    const restaurantJsonReady = await restaurantJson;
     return (
         <>
             <div
@@ -17,9 +17,9 @@ export default async function VenueCatalog({venuesJson}:{venuesJson:Promise<Venu
                     alignContent: "space-around",
                 }}
             >
-                {venuesJsonReady.data.map((venueItem : VenueItem ) => (   
-                    <Link key={venueItem.id} href={`venue/${venueItem.id}`} className="w-1/5">
-                        <Card venueName={venueItem.name} imgSrc={venueItem.picture} />
+                {restaurantJsonReady.data.map((resItem : RestaurantItem ) => (   
+                    <Link key={resItem._id} href={`restaurant/${resItem._id}`} className="w-1/5">
+                        <Card venueName={resItem.name} imgSrc={"/img/amber.jpg"} />
                     </Link>
                 ))}
             </div>

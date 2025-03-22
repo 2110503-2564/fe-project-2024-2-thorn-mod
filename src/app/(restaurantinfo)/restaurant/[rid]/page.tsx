@@ -1,4 +1,4 @@
-import  getVenue from "@/libs/getVenue";
+import  getVenue from "@/libs/getRestaurant";
 import Image from "next/image";
 
 

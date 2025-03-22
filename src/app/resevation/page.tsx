@@ -6,7 +6,7 @@ import { MenuItem, Select, TextField } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
-import { BookingItem } from "../../../interface";
+import { ReservationItem } from "../../../interface";
 import { addBooking } from "@/redux/features/bookSlice";
 
 export default function Booking() {
