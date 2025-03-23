@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { MenuItem, Select, TextField } from "@mui/material";
 import {
@@ -9,24 +8,23 @@ import {
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
-import { ReservationItem, RestaurantItem } from "../../../interface";
-import { addReservation } from "@/redux/features/reservationSlice";
+import { RestaurantItem } from "../../../interface";
+import addReservation from "@/libs/addReservation";
 import { useSession } from "next-auth/react";
 import getRestaurant from "@/libs/getRestaurant";
-import { useDispatch } from "react-redux";
 
 export default function Reservation() {
   const { data: session, status } = useSession();
-  const dispatch = useDispatch();
 
   const [nameLastname, setNameLastname] = useState("");
   const [tel, setTel] = useState("");
   const [dayReserve, setDayReserve] = useState<Dayjs | null>(null);
   const [reservationTime, setReservationTime] = useState<Dayjs | null>(null);
-  const [restaurant, setRestaurant] = useState<RestaurantItem | null>(null);
+  const [restaurant, setRestaurant] = useState<string>("");
+  const [selectedRestaurantId, setSelectedRestaurantId] = useState<string>("");
 
   const pullRestaurant = async (id: string) => {
-    setRestaurant(await getRestaurant(id));
+    setSelectedRestaurantId(id);
   };
 
   if (status === "loading") {
@@ -38,7 +36,7 @@ export default function Reservation() {
       !nameLastname ||
       !tel ||
       !dayReserve ||
-      !restaurant ||
+      !selectedRestaurantId ||
       !reservationTime
     ) {
       alert("Please fill in all fields before reserving.");
@@ -53,12 +51,18 @@ export default function Reservation() {
     const reservationData = {
       reservationDate: dayReserve.format("YYYY-MM-DD"),
       reservationTime: reservationTime.format("HH:mm"),
-      
     };
 
-      
-
-
+    try {
+      await addReservation(
+        selectedRestaurantId,
+        reservationData,
+        session.user.token
+      );
+    } catch (error) {
+      console.error("Error making reservation:", error);
+      alert("Failed to make reservation. Please try again.");
+    }
   };
 
   return (
@@ -73,16 +77,18 @@ export default function Reservation() {
             Select Date & Location
           </h2>
 
-          <div className="bg-slate-100 rounded-lg px-10 py-5 flex flex-col space-y-5">
+          <div className="bg-slate-100 rounded-lg px-10 py-5 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-5">
             <TextField
               variant="standard"
               label="Name-Lastname"
+              value={nameLastname}
               onChange={(e) => setNameLastname(e.target.value)}
             />
-            
+
             <TextField
               variant="standard"
               label="Contact-Number"
+              value={tel}
               onChange={(e) => setTel(e.target.value)}
             />
 
@@ -90,7 +96,7 @@ export default function Reservation() {
               <DatePicker
                 className="bg-white"
                 value={dayReserve}
-                onChange={setDayReserve}
+                onChange={(newValue) => setDayReserve(newValue)}
               />
             </LocalizationProvider>
 
@@ -98,15 +104,18 @@ export default function Reservation() {
               <TimePicker
                 className="bg-white"
                 value={reservationTime}
-                onChange={setReservationTime}
+                onChange={(newValue) => setReservationTime(newValue)}
                 ampm={false}
               />
             </LocalizationProvider>
             <Select
               className="h-[2em] w-full"
               variant="standard"
-              value={restaurant?.name}
-              onChange={(e) => pullRestaurant(e.target.value)}
+              value={selectedRestaurantId}
+              onChange={(e) => {
+                setRestaurant(e.target.value);
+                pullRestaurant(e.target.value);
+              }}
             >
               <MenuItem value="67bdc78f52c428af8d90acc2">
                 The Funky Burger
