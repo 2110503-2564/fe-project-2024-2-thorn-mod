@@ -2,7 +2,7 @@
 import { getSession } from 'next-auth/react';
 
 export default async function getReservations(token:string) {
-    const response = await fetch("http://thorn-mod.us-east-1.elasticbeanstalk.com/api/v1/reservation", {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/reservation`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
