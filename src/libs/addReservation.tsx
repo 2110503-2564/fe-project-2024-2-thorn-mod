@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { RestaurantItem } from "../../interface";
 import { useSession } from "next-auth/react";
 
-export default async function makeReserrvation (restaurantID:string,reservationData:JSON){
+export default async function addReserrvation (restaurantID:string,reservationData:JSON){
 
 
         const profile = useSession().data?.user
