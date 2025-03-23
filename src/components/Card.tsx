@@ -12,7 +12,7 @@ export default function Card ({venueName,imgSrc,ratingFunc}:{venueName:string,im
     return (
         <InteractiveCard contentName={venueName}>
             
-            <div className="w-full h-[70%] rounded-t-lg relative text-center " >
+            <div className="bg-white shadow-md flex flex-col w-full h-[70%] rounded-t-lg relative text-center " >
                     <Image 
                         src={imgSrc}
                         alt={venueName}

@@ -18,7 +18,7 @@ export default function InteractiveCard({children,contentName}:{children:React.R
     }
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-lg ring-gray-900/5 h-[300px] text-center"
+        <div className="bg-white rounded-lg px-6 py-8 ring shadow-lg ring-gray-900/5 h-[300px] text-center"
         onMouseOver={(e)=>onMouseHover(e)}
         onMouseOut={(e)=>onMouseHover(e)}
         

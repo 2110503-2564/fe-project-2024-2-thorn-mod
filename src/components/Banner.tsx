@@ -4,60 +4,77 @@ import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter
 import { useSession } from "next-auth/react";
 
-export default function Banner() {
+export default function Banner({ banners }: { banners: string[] }) {
     const {data:session}  = useSession();
 
     const router = useRouter(); // Initialize useRouter
 
-    const banner = [
-        '/img/cover.jpg',
-        '/img/cover2.jpg',
-        '/img/cover3.jpg',
-        '/img/cover4.jpg'
-    ];
+    // const banner = [
+    //     '/img/cover.jpg',
+    //     '/img/cover2.jpg',
+    //     '/img/cover3.jpg',
+    //     '/img/cover4.jpg'
+    // ];
 
     const [index, setIndex] = useState(0);
 
     const changeBanner = () => {
-        setIndex((index + 1) % banner.length);
+        setIndex((index + 1) % banners.length);
     };
 
     const handleNavigate = (event: React.MouseEvent) => {
         event.stopPropagation(); 
-        router.push('/reservation'); 
+
+        if (session) {
+            router.push('/reservation');
+        } else {
+            alert("Please log in before use.");
+            router.push('/api/auth/signin');
+        }
     };
 
     return (
-        <div 
-            className="relative flex w-full h-screen m-0 p-10 shadow-lg text-center " 
-            onClick={changeBanner}
-        >
-            
-            <div> 
+        <div className="relative flex w-full h-screen m-0 p-10 shadow-lg text-center" 
+        onClick={changeBanner}>
+            <div className="absolute inset-0 z-0"> 
                 <Image 
-                    src={banner[index]} 
+                    src={banners[index]} 
                     alt="banner"
                     layout="fill"
-                    style={{ objectFit: "cover" }}
+                    className="object-cover transition-opacity duration-700 opacity-100"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
             </div>
-
-            {/* {session?
-            <div className=" flex absolute right-0 px-5 bg-white rounded-md ">
-                Welcome {session?.user.name}
+{/* 
+            {session?
+            <div className="flex absolute top-20 right-6 px-5 py-5 z-10 bg-white rounded-md ">
+                Welcome {session.user.name ?? 'Guest'}
             </div>: null
             } */}
 
-            <h1 className="relative flex items-center justify-center text-white text-[30px] font-bold">Restaurant Reservation</h1>
+            <div className="absolute inset-0 flex flex-col justify-center items-center space-y-5">
+                <h1 className="text-white text-[48px] font-bold drop-shadow-lg">Restaurant Reservation</h1>
 
-          
-            <button 
-                className="absolute bottom-5 right-5 bg-green-600 text-white px-5 py-5  rounded-lg text-lg font-semibold hover:bg-slate-300 hover:text-blue-600 transition"
-                onClick={handleNavigate}
-            >
-                Select Restaurant
-            </button>
+                <h3 className="text-white text-[20px] max-w-2xl drop-shadow-md">
+                    Welcome to Restaurant Reservation
+                    Discover your favorite restaurants and book a table in just a few clicks.
+                    No more waiting in lines — make every meal memorable.
+                </h3>
+
+                <div className="flex space-x-5">
+                    <button 
+                        className="bg-[#525CEB] text-white h-[60px] w-[200px] rounded-lg text-lg font-semibold hover:bg-white hover:text-[#525CEB] transition"
+                        onClick={handleNavigate}
+                        >Reservation
+                    </button>
+                    <button 
+                        className="bg-[#3D3B40] text-white h-[60px] w-[200px] rounded-lg text-lg font-semibold hover:bg-white hover:text-[#3D3B40] transition"
+                        onClick={() => router.push('/restaurant')}
+                        >View Restaurant
+                    </button>
+                </div>
+                
+            </div>  
         </div>
     );
 }
