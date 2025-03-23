@@ -1,10 +1,12 @@
 import dayjs from "dayjs";
 import { RestaurantItem } from "../../interface";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 export default async function addReservation(
   restaurantID: string,
-  reservationData: Object
+  reservationData: Object,
+  token: string
 ) {
   const profile = useSession().data?.user;
 
@@ -15,7 +17,7 @@ export default async function addReservation(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${profile?.token}`, // Pass the token
+          Authorization: `Bearer ${token}`, // Pass the token
         },
         body: JSON.stringify(reservationData),
       }
