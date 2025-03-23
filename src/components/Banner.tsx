@@ -36,15 +36,14 @@ export default function Banner({ banners }: { banners: string[] }) {
     return (
         <div className="relative flex w-full h-screen m-0 p-10 shadow-lg text-center" 
         onClick={changeBanner}>
-            <div className="absolute inset-0 z-0"> 
                 <Image 
                     src={banners[index]} 
                     alt="banner"
                     layout="fill"
+                    priority
                     className="object-cover transition-opacity duration-700 opacity-100"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-            </div>
 {/* 
             {session?
             <div className="flex absolute top-20 right-6 px-5 py-5 z-10 bg-white rounded-md ">
@@ -53,15 +52,15 @@ export default function Banner({ banners }: { banners: string[] }) {
             } */}
 
             <div className="absolute inset-0 flex flex-col justify-center items-center space-y-5">
-                <h1 className="text-white text-[48px] font-bold drop-shadow-lg">Restaurant Reservation</h1>
+                <h1 className="text-white text-5xl font-bold">Restaurant Reservation</h1>
 
-                <h3 className="text-white text-[20px] max-w-2xl drop-shadow-md">
+                <h3 className="text-white text-lg max-w-2xl">
                     Welcome to Restaurant Reservation
                     Discover your favorite restaurants and book a table in just a few clicks.
                     No more waiting in lines — make every meal memorable.
                 </h3>
 
-                <div className="flex space-x-5">
+                <div className="grid grid-cols-xl space-x-5 space-y-5">
                     <button 
                         className="bg-[#525CEB] text-white h-[60px] w-[200px] rounded-lg text-lg font-semibold hover:bg-white hover:text-[#525CEB] transition"
                         onClick={handleNavigate}

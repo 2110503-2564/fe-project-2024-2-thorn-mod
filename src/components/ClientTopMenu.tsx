@@ -72,7 +72,7 @@ export default function ClientTopMenu() {
                 <div>Guest</div>
               }
               {user ? 
-                <div>Email: {user.data.name}</div> 
+                <div>Email: {user.data.email}</div> 
                 : 
                 <div></div>
               }
