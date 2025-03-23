@@ -36,3 +36,4 @@ export interface UpdateReservationRequest {
   reservationDate: string;
   reservationTime: string;
 }
+

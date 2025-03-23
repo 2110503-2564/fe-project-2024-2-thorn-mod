@@ -50,20 +50,15 @@ export default function Reservation() {
       return;
     }
 
-    const reservationData: ReservationItem = {
+    const reservationData = {
       reservationDate: dayReserve.format("YYYY-MM-DD"),
-      _id: session.user._id,
       reservationTime: reservationTime.format("HH:mm"),
-      restaurant: restaurant,
+      
     };
 
-    try {
-      dispatch(addReservation(reservationData));
-      alert("Reservation added successfully!");
-    } catch (error) {
-      console.error("Reservation error:", error);
-      alert("Something went wrong. Please try again.");
-    }
+      
+
+
   };
 
   return (
