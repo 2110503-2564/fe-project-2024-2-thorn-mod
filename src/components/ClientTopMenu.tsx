@@ -115,10 +115,10 @@ export default function ClientTopMenu() {
                 <Link href={'/myReservation'} onClick={() => setMenuOpen(false)}>
                   <div className="p-4 border-b hover:bg-gray-100">My Reservation</div>
                 </Link>
-              }
+              }*/}
               <Link href={'/api/auth/signout'} onClick={() => setMenuOpen(false)}>
                 <div className="p-4 border-b hover:bg-gray-100">Sign-Out</div>
-              </Link> */}null
+              </Link> 
             </> 
             : (
             <>
