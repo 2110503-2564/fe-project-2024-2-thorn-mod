@@ -52,5 +52,5 @@ import ClientTopMenu from "./ClientTopMenu";
 export default async function TopMenu() {
   const session = await getServerSession(authOptions);
   
-  return <ClientTopMenu session={session} />;
+  return <ClientTopMenu  />;
 }
