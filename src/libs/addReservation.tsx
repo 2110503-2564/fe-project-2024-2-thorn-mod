@@ -5,7 +5,7 @@ export default async function addReservation(
 ) {
   try {
     const res = await fetch(
-      `http://localhost:5000/api/v1/restaurants/${restaurantID}/reservation`,
+      `http://thorn-mod.us-east-1.elasticbeanstalk.com/api/v1/restaurants/${restaurantID}/reservation`,
       {
         method: "POST",
         headers: {
