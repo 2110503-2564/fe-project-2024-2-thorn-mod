@@ -60,7 +60,7 @@ export default function Banner({ banners }: { banners: string[] }) {
                     No more waiting in lines — make every meal memorable.
                 </h3>
 
-                <div className="grid grid-cols-xl space-x-5 space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 px-5 py-5">
                     <button 
                         className="bg-[#525CEB] text-white h-[60px] w-[200px] rounded-lg text-lg font-semibold hover:bg-white hover:text-[#525CEB] transition"
                         onClick={handleNavigate}
