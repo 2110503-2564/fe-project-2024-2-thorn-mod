@@ -1,6 +1,6 @@
 export default async function deleteReservation({ rid, token }: { rid: string; token: string }) {
     try {
-        const response = await fetch(`${process.env.BACKEND_URL}/api/v1/reservation/${rid}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/reservation/${rid}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

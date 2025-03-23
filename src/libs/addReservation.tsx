@@ -5,7 +5,7 @@ export default async function addReservation(
 ) {
   try {
     const res = await fetch(
-      `${process.env.BACKEND_URL}/api/v1/restaurants/${restaurantID}/reservation`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/restaurants/${restaurantID}/reservation`,
       {
         method: "POST",
         headers: {
