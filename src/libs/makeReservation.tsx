@@ -2,13 +2,13 @@ import dayjs from "dayjs";
 import { RestaurantItem } from "../../interface";
 import { useSession } from "next-auth/react";
 
-export default async function makeReserrvation (restaurantId:string){
+export default async function makeReserrvation (restaurantID:string,reservationData:JSON){
 
 
         const profile = useSession().data?.user
 
         try {
-            const res = await fetch(`http://localhost:5000/api/v1/restaurants/${restaurantId}/reservation`, {
+            const res = await fetch(`http://localhost:5000/api/v1/restaurants/${restaurantID}/reservation`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -28,7 +28,5 @@ export default async function makeReserrvation (restaurantId:string){
             console.error("Error booking:", error);
             alert("Something went wrong. Please try again.");
         }
-    } else {
-        alert("Please select a date and restaurant.");
-    }
+    
 };

@@ -33,3 +33,8 @@ export interface RestaurantJson {
 export interface ReservationListProps {
   reservationJson: ReservationJson | null;
 }
+
+export interface UpdateReservationRequest {
+  reservationDate: string;
+  reservationTime: string;
+}
