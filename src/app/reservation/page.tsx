@@ -67,28 +67,30 @@ export default function Reservation() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gray-100 py-10">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl mt-10">
+    <main className="min-h-screen flex flex-col items-center bg-gray-100 py-14">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-xl mt-10">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
           Reserve Your Restaurant
         </h1>
 
-        <div className="bg-gray-200 p-6 rounded-lg">
+        <div className="bg-[#BFCFE7] p-6 rounded-lg">
           <h2 className="text-xl font-semibold mb-2 text-gray-700">
             Select Date & Location
           </h2>
 
-          <div className="bg-slate-100 rounded-lg px-10 py-5 flex flex-row space-x-5">
+          <div className="bg-slate-100 rounded-lg px-10 py-5 flex flex-col space-y-5">
             <TextField
               variant="standard"
               label="Name-Lastname"
               onChange={(e) => setNameLastname(e.target.value)}
             />
+            
             <TextField
               variant="standard"
               label="Contact-Number"
               onChange={(e) => setTel(e.target.value)}
             />
+
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 className="bg-white"
@@ -96,6 +98,7 @@ export default function Reservation() {
                 onChange={setDayReserve}
               />
             </LocalizationProvider>
+
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <TimePicker
                 className="bg-white"
@@ -105,7 +108,7 @@ export default function Reservation() {
               />
             </LocalizationProvider>
             <Select
-              className="h-[2em] w-[200px]"
+              className="h-[2em] w-full"
               variant="standard"
               value={restaurant?.name}
               onChange={(e) => pullRestaurant(e.target.value)}
@@ -130,7 +133,7 @@ export default function Reservation() {
         </div>
 
         <button
-          className="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md text-lg"
+          className="mt-6 w-full bg-[#525CEB] hover:bg-[#F8EDFF] hover:text-[#525CEB] text-white font-semibold py-3 rounded-lg shadow-md text-lg"
           onClick={makeReserve}
         >
           Reserve

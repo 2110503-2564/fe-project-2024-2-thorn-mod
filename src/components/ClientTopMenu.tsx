@@ -79,6 +79,9 @@ export default function ClientTopMenu() {
             </div>
           </div>
 
+          <Link href={'/'} onClick={() => setMenuOpen(false)}>
+            <div className="p-4 border-b hover:bg-gray-100">Home</div>
+          </Link>
 
           <Link href={'/restaurant'} onClick={() => setMenuOpen(false)}>
             <div className="p-4 border-b hover:bg-gray-100">Restaurant</div>

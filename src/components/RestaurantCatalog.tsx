@@ -7,7 +7,7 @@ export default async function RestaurantCatalog({ restaurantJson }: { restaurant
 
     return (
         
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 min-w-[200px] min-h-[300px]  gap-5 p-10">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5 p-10 w-full">
             {restaurantJsonReady.data.map((resItem : RestaurantItem ) => (   
                 <Link key={resItem._id} href={`restaurant/${resItem._id}`} className="w-full">
                     <Card venueName={resItem.name} imgSrc={resItem.picture} />
