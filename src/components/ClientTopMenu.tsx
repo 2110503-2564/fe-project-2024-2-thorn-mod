@@ -12,7 +12,6 @@ export default function ClientTopMenu() {
   
   const { data: session } = useSession();
   const [user, setUser] = useState<any>(null);
-  const role = user?.data?.role ?? 'guest';
   
   useEffect(() => {
     const fetchUser = async () => {
