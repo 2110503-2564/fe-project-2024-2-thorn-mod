@@ -107,7 +107,7 @@ export default function ClientTopMenu() {
 
           {session ? 
             <>
-              {user?.data?.role === 'admin' ?
+              {/* {user?.data?.role === 'admin' ?
                 <Link href={'/myReservation'} onClick={() => setMenuOpen(false)}>
                   <div className="p-4 border-b hover:bg-gray-100">All Reservation</div>
                 </Link>
@@ -118,7 +118,7 @@ export default function ClientTopMenu() {
               }
               <Link href={'/api/auth/signout'} onClick={() => setMenuOpen(false)}>
                 <div className="p-4 border-b hover:bg-gray-100">Sign-Out</div>
-              </Link>
+              </Link> */}null
             </> 
             : (
             <>
