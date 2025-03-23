@@ -15,22 +15,18 @@ import getRestaurant from "@/libs/getRestaurant";
 
 export default function Reservation() {
   const { data: session, status } = useSession();
-
   const [nameLastname, setNameLastname] = useState("");
   const [tel, setTel] = useState("");
   const [dayReserve, setDayReserve] = useState<Dayjs | null>(null);
   const [reservationTime, setReservationTime] = useState<Dayjs | null>(null);
   const [restaurant, setRestaurant] = useState<string>("");
   const [selectedRestaurantId, setSelectedRestaurantId] = useState<string>("");
-
   const pullRestaurant = async (id: string) => {
     setSelectedRestaurantId(id);
   };
-
   if (status === "loading") {
     return <div>Loading...</div>;
   }
-
   const makeReserve = async () => {
     if (
       !nameLastname ||

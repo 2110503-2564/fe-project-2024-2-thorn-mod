@@ -1,4 +1,3 @@
-
 export default async function addReservation(
   restaurantID: string,
   reservationData: Object,
@@ -12,7 +11,6 @@ export default async function addReservation(
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-
         },
         body: JSON.stringify(reservationData),
       }
