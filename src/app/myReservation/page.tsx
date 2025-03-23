@@ -17,12 +17,16 @@ export default function Reservations() {
     const [editRes, setEditRes] = useState<string | null>(null);
     const [editedDate, setEditedDate] = useState("");
     const [editedTime, setEditedTime] = useState<Dayjs | null>(dayjs());
+    const [isCancel, setCancel] = useState(false);
 
     useEffect(() => {
         if (status === "authenticated") {
+            if (isCancel){
+                cancelReservation();
+            }
             fetchReservations();
         }
-    }, [status]);
+    }, [status,isCancel]);
 
     async function fetchReservations() {
         if (!session?.user?.token) return console.error("User is not authenticated");
@@ -132,7 +136,7 @@ export default function Reservations() {
                                         className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-md shadow-md transition"
                                         onClick={() => {
                                             setCancelRes(reservation._id);
-                                            cancelReservation();
+                                            setCancel(true);
                                         }}
                                     >
                                         Cancel Reservation
@@ -140,7 +144,7 @@ export default function Reservations() {
                                 </div>
                             ))
                         ) : (
-                            <div className="text-xl text-gray-500 mt-10">No Reservations</div>
+                            <div className="text-xl text-gray-500 fixed inset-0 flex justify-center items-center bg-gray-100 bg-opacity-50 ">No Reservations</div>
                         )
                     )}
                 </div>

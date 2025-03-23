@@ -66,35 +66,37 @@ export default function Reservation() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gray-100 py-14">
-      <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-xl mt-10">
+    <main className="min-h-screen flex flex-col items-center bg-gray-100 py-20 px-20 w-full">
+      <div className="bg-white shadow-lg rounded-lg px-10 py-20 w-full max-w-8xl mt-10">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
           Reserve Your Restaurant
         </h1>
 
-        <div className="bg-[#BFCFE7] p-6 rounded-lg">
+        <div className="bg-[#BFCFE7] px-6 py-10 rounded-lg">
           <h2 className="text-xl font-semibold mb-2 text-gray-700">
             Select Date & Location
           </h2>
 
-          <div className="bg-slate-100 rounded-lg px-10 py-5 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-5">
+          <div className="bg-slate-100 w-full rounded-lg px-10 py-10 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-5">
             <TextField
+              className="w-full max-w-2xl"
               variant="standard"
-              label="Name-Lastname"
+              label="Name - Lastname"
               value={nameLastname}
               onChange={(e) => setNameLastname(e.target.value)}
             />
 
             <TextField
+              className="w-full max-w-2xl"
               variant="standard"
-              label="Contact-Number"
+              label="Contact - Number"
               value={tel}
               onChange={(e) => setTel(e.target.value)}
             />
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                className="bg-white"
+                className="bg-white w-full"
                 value={dayReserve}
                 onChange={(newValue) => setDayReserve(newValue)}
               />
@@ -102,7 +104,7 @@ export default function Reservation() {
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <TimePicker
-                className="bg-white"
+                className="bg-white w-full"
                 value={reservationTime}
                 onChange={(newValue) => setReservationTime(newValue)}
                 ampm={false}
