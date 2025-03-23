@@ -23,6 +23,7 @@ export default function Reservations() {
         if (status === "authenticated") {
             if (isCancel){
                 cancelReservation();
+                setCancel(false);
             }
             fetchReservations();
         }
