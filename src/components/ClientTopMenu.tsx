@@ -58,7 +58,7 @@ export default function ClientTopMenu() {
         <div className="absolute top-[64px] right-0 w-96 h-screen bg-white shadow-lg z-40">
           <div className="p-4 border-b flex items-center space-x-4">
             <Image 
-              src={'/img/user.png'}
+              src={'/img/User.png'}
               alt="user"
               width={0}
               height={0}
@@ -104,7 +104,7 @@ export default function ClientTopMenu() {
 
           {session ? 
             <>
-              {/* {user?.data?.role === 'admin' ?
+              {user?.data?.role === 'admin' ?
                 <Link href={'/myReservation'} onClick={() => setMenuOpen(false)}>
                   <div className="p-4 border-b hover:bg-gray-100">All Reservation</div>
                 </Link>
@@ -115,7 +115,7 @@ export default function ClientTopMenu() {
               }*/}
               <Link href={'/api/auth/signout'} onClick={() => setMenuOpen(false)}>
                 <div className="p-4 border-b hover:bg-gray-100">Sign-Out</div>
-              </Link> 
+              </Link>
             </> 
             : (
             <>

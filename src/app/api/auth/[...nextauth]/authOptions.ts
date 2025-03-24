@@ -24,7 +24,7 @@ export const authOptions: AuthOptions = {
         }
 
         const user = await userLogin(credentials.email, credentials.password);
-
+        console.log(user);
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
@@ -46,5 +46,7 @@ export const authOptions: AuthOptions = {
       session.user = token as any;
       return session;
     },
-  },
+  }
 };
+
+
