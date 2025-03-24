@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import getUserProfile from "@/libs/getUserProfile";
+import router from "next/router";
 
 export default function ClientTopMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,6 +24,13 @@ export default function ClientTopMenu() {
 
     fetchUser();
   }, [session]);
+
+  const handleNavigate = (event: React.MouseEvent) => {
+    event.stopPropagation(); 
+
+    alert("Please log in before use.");
+    setMenuOpen(false);
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 w-screen h-[64px] z-30 bg-white border-b border-gray-400 flex items-center justify-between px-6 shadow-lg">
@@ -86,6 +94,16 @@ export default function ClientTopMenu() {
           <Link href={'/restaurant'} onClick={() => setMenuOpen(false)}>
             <div className="p-4 border-b hover:bg-gray-100">Restaurant</div>
           </Link>
+
+          {session ? 
+            <Link href={'/reservation'} onClick={() => setMenuOpen(false)}>
+              <div className="p-4 border-b hover:bg-gray-100">Reservation</div>
+            </Link>
+          : 
+            <Link href={'/api/auth/signin'} onClick={handleNavigate}>
+              <div className="p-4 border-b hover:bg-gray-100">Reservation</div>
+            </Link>
+          }
 
 
           {session ? 
