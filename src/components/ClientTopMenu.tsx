@@ -87,20 +87,6 @@ export default function ClientTopMenu() {
             <div className="p-4 border-b hover:bg-gray-100">Restaurant</div>
           </Link>
 
-          {session && user && user.data && (
-            <>
-              {user.data.role === 'admin' ? (
-                <Link href={'/myReservation'} onClick={() => setMenuOpen(false)}>
-                  <div className="p-4 border-b hover:bg-gray-100">All Reservation</div>
-                </Link>) 
-                : (
-                <Link href={'/myReservation'} onClick={() => setMenuOpen(false)}>
-                  <div className="p-4 border-b hover:bg-gray-100">My Reservation</div>
-                </Link>
-              )}
-            </>
-          )}
-
 
           {session ? 
             <>
@@ -112,7 +98,7 @@ export default function ClientTopMenu() {
                 <Link href={'/myReservation'} onClick={() => setMenuOpen(false)}>
                   <div className="p-4 border-b hover:bg-gray-100">My Reservation</div>
                 </Link>
-              }*/}
+              }
               <Link href={'/api/auth/signout'} onClick={() => setMenuOpen(false)}>
                 <div className="p-4 border-b hover:bg-gray-100">Sign-Out</div>
               </Link>
