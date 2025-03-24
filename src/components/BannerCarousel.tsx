@@ -27,7 +27,7 @@ export default function Banner() {
         <Image
             src={images[currentImageIndex].src}
             alt="banner"
-            layout="fill"
+            fill
             objectFit="cover"
         />
     </div>
