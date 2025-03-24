@@ -12,7 +12,7 @@ export default function ClientTopMenu() {
   
   const { data: session } = useSession();
   const [user, setUser] = useState<any>(null);
-  
+  // console.log(session);
   useEffect(() => {
     const fetchUser = async () => {
       if (session?.user?.token) {
