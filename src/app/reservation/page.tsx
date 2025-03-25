@@ -73,7 +73,7 @@ export default function Reservation() {
             Select Date & Location
           </h2>
 
-          <div className="bg-slate-100 w-full rounded-lg px-10 py-10 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-5">
+          <div className="bg-slate-100 w-full rounded-lg px-10 py-10 flex flex-col space-y-4">
             <TextField
               className="w-full max-w-2xl"
               variant="standard"
