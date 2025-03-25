@@ -1,3 +1,4 @@
+import BackButton from "@/components/BackButton";
 import getRestaurant from "@/libs/getRestaurant";
 import Image from "next/image";
 
@@ -6,8 +7,13 @@ export default async function VenueDetail({ params }: { params: { rid: string } 
   const venueData = await getRestaurant(params.rid);
 
   return (
-    <main className="p-10 bg-gray-50 min-h-screen flex justify-center items-center">
-      <div className="bg-white shadow-lg rounded-lg px-35 py-10 max-w-4xl w-full">
+    <main className="min-h-screen pt-24 px-4 flex flex-col items-center">
+      {/* <main className="p-10 bg-gray-50 min-h-screen flex items-center"></main> */}
+      <div className="w-full max-w-4xl flex justify-start mb-4">
+        <BackButton />
+      </div>
+
+      <div className="bg-white shadow-lg rounded-lg px-35 py-10 max-w-4xl ">
         <div className="flex flex-col md:flex-row items-center md:items-start px-5">
           {/* รูปภาพ Venue */}
           <Image

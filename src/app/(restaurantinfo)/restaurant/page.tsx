@@ -7,9 +7,9 @@ export default async function Home() {
   const restaurantDetail = await getRestaurants();
 
   return (
-    <main className="min-h-screen pt-24">
+    <main className="min-h-screen pt-24 px-6">
 
-      <div className="absolute top-24 left-6">
+      <div className="absolute top-24 left-6 z-50">
         <BackButton />
       </div>
       <div className="flex items-start gap-4">
