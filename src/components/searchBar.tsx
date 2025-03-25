@@ -76,7 +76,8 @@ const SearchBar = () => {
         leave="transition ease-out duration-75"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
-        className="absolute left-0 right-0 w-full mt-2 bg-white rounded-lg shadow-lg max-h-60 overflow-y-auto z-10"
+        className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white rounded-lg shadow-lg max-h-60 overflow-y-auto z-10 w-full max-w-lg"
+
       >
         <ul className="space-y-2 p-2">
           {suggestions
@@ -84,7 +85,7 @@ const SearchBar = () => {
             .map((suggestion, index) => (
               <li
                 key={index}
-                className="cursor-pointer hover:bg-blue-500 hover:text-white rounded-md py-1 px-3"
+                className="text-left cursor-pointer hover:bg-blue-500 hover:text-white rounded-md py-1 px-3"
                 onClick={() => {
                   setQuery(suggestion);
                   if (isClient) {

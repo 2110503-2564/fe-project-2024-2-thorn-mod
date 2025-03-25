@@ -9,6 +9,7 @@ import { TimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import { Transition } from "@headlessui/react";
 
 export default function Reservations() {
     const { data: session, status } = useSession();
@@ -76,11 +77,12 @@ export default function Reservations() {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="flex justify-center items-center min-h-screen">
-                <div className="grid grid-cols-2 md:grid-cols-2 gap-6 w-full max-w-4xl mt-20">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-full max-w-4xl mt-20">
                     {editRes ? (
-                        <div className="fixed inset-0 flex justify-center items-center bg-gray-100 bg-opacity-50">
-                        <div className="bg-white shadow-lg rounded-lg p-6 border-l-4 border-blue-500 w-96">
+                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+                            <div className="bg-white shadow-2xl rounded-lg p-6 border-l-4 w-[90%] max-w-md animate-fadeIn">
                             <h2 className="text-2xl font-semibold text-gray-700 mb-4">Edit Reservation</h2>
+
                             <label className="block text-gray-600 mb-2">Date</label>
                             <input
                                 type="date"
@@ -115,33 +117,40 @@ export default function Reservations() {
                             reservations.map((reservation) => (
                                 <div
                                     key={reservation._id}
-                                    className="bg-white shadow-lg rounded-lg p-6 border-l-4 border-green-500 transition hover:shadow-xl ml-10"
+                                    className="grid grid-cols-1 md:grid-cols-2 max-w-screen bg-white shadow-lg rounded-lg p-6 border-l-4 transition hover:shadow-xl"
                                 >
-                                    <div className="text-2xl font-semibold text-gray-700 mb-2">{reservation.restaurant.name}</div>
-                                    <div className="text-gray-600">Name: {session?.user.name}</div>
-                                    <div className="text-gray-600">Date: {reservation.reservationDate}</div>
-                                    <div className="text-gray-600">Time: {reservation.reservationTime}</div>
+                                    <div>
+                                        <div className="text-2xl font-semibold text-gray-700 mb-2">{reservation.restaurant.name}</div>
+                                        {/* <div className="text-gray-600">Name: {session?.user.name}</div> */}
+                                        <div className="text-gray-600">Name: {session?.user?.name}</div>
+                                        <div className="text-gray-600">Date: {reservation.reservationDate}</div>
+                                        <div className="text-gray-600">Time: {reservation.reservationTime}</div>
+                                    </div>
+                                    
+                                    <div>
+                                        <button
+                                            className="mt-4 w-full bg-sky-400 hover:bg-sky-600 text-white font-semibold py-2 rounded-md shadow-md transition"
+                                            onClick={() => {
+                                                setEditRes(reservation._id);
+                                                setEditedDate(reservation.reservationDate);
+                                                setEditedTime(dayjs(reservation.reservationTime));
+                                            }}
+                                        >
+                                            Edit Reservation
+                                        </button>
 
-                                    <button
-                                        className="mt-4 w-full bg-sky-400 hover:bg-sky-600 text-white font-semibold py-2 rounded-md shadow-md transition"
-                                        onClick={() => {
-                                            setEditRes(reservation._id);
-                                            setEditedDate(reservation.reservationDate);
-                                            setEditedTime(dayjs(reservation.reservationTime));
-                                        }}
-                                    >
-                                        Edit Reservation
-                                    </button>
+                                        <button
+                                            className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-md shadow-md transition"
+                                            onClick={() => {
+                                                setCancelRes(reservation._id);
+                                                setCancel(true);
+                                            }}
+                                        >
+                                            Cancel Reservation
+                                        </button>
+                                    </div>
 
-                                    <button
-                                        className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-md shadow-md transition"
-                                        onClick={() => {
-                                            setCancelRes(reservation._id);
-                                            setCancel(true);
-                                        }}
-                                    >
-                                        Cancel Reservation
-                                    </button>
+                                    
                                 </div>
                             ))
                         ) : (
